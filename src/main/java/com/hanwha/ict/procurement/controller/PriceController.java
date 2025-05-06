@@ -2,14 +2,13 @@ package com.hanwha.ict.procurement.controller;
 
 import com.hanwha.ict.procurement.service.PriceService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/test")
 @RequiredArgsConstructor
+@Slf4j
 public class PriceController {
 
     private final PriceService priceService;
@@ -19,6 +18,9 @@ public class PriceController {
         long start = System.currentTimeMillis();
         String result = priceService.getPrice(id);
         long end = System.currentTimeMillis();
-        return "Result: " + result + " | Response time: " + (end - start) + "ms";
+        long duration = end - start;
+
+        log.info("📌 단가 조회 요청 - 상품 ID: {} | 응답 시간: {}ms", id, duration);
+        return "Result: " + result + " | Response time: " + duration + "ms";
     }
 }
