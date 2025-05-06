@@ -1,9 +1,11 @@
 package com.hanwha.ict.procurement.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class PriceService {
 
     @Cacheable(value = "price", key = "#productId")
